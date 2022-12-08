@@ -1,11 +1,5 @@
-import {
-	Client,
-	GatewayIntentBits,
-	Collection,
-	PermissionFlagsBits,
-} from 'discord.js'
-const { Guilds, MessageContent, GuildMessages, GuildMembers } =
-	GatewayIntentBits
+import { Client, GatewayIntentBits, Collection, PermissionFlagsBits } from 'discord.js'
+const { Guilds, MessageContent, GuildMessages, GuildMembers } = GatewayIntentBits
 const client = new Client({
 	intents: [Guilds, MessageContent, GuildMessages, GuildMembers],
 })

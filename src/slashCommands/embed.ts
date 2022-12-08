@@ -1,11 +1,4 @@
-import {
-	SlashCommandBuilder,
-	ChannelType,
-	TextChannel,
-	EmbedBuilder,
-	ColorResolvable,
-	ApplicationCommandChoicesData,
-} from 'discord.js'
+import { SlashCommandBuilder, ChannelType, TextChannel, EmbedBuilder, ColorResolvable, ApplicationCommandChoicesData } from 'discord.js'
 import { SlashCommand } from '../types'
 
 const command: SlashCommand = {
@@ -13,31 +6,16 @@ const command: SlashCommand = {
 		.setName('embed')
 		.setDescription('Create a new embed message.')
 		.addStringOption((option) => {
-			return option
-				.setName('title')
-				.setDescription('Title of the embed message')
-				.setRequired(true)
+			return option.setName('title').setDescription('Title of the embed message').setRequired(true)
 		})
 		.addStringOption((option) => {
-			return option
-				.setName('description')
-				.setDescription('Description of the embed message.')
-				.setRequired(true)
+			return option.setName('description').setDescription('Description of the embed message.').setRequired(true)
 		})
 		.addChannelOption((option) => {
-			return option
-				.setName('channel')
-				.setDescription('Text channel where the embed message will be sent.')
-				.setRequired(true)
+			return option.setName('channel').setDescription('Text channel where the embed message will be sent.').setRequired(true)
 		})
 		.addStringOption((option) => {
-			return option
-				.setName('color')
-				.setDescription(
-					'Select an option or type an hex color, for example: #000000',
-				)
-				.setRequired(true)
-				.setAutocomplete(true)
+			return option.setName('color').setDescription('Select an option or type an hex color, for example: #000000').setRequired(true).setAutocomplete(true)
 		}),
 	autocomplete: async (interaction) => {
 		try {
@@ -83,8 +61,7 @@ const command: SlashCommand = {
 		try {
 			await interaction.deferReply({ ephemeral: true })
 			const options: { [key: string]: string | number | boolean } = {}
-			if (!interaction.options)
-				return interaction.editReply({ content: 'Something went wrong...' })
+			if (!interaction.options) return interaction.editReply({ content: 'Something went wrong...' })
 			for (let i = 0; i < interaction.options.data.length; i++) {
 				const element = interaction.options.data[i]
 				if (element.name && element.value) options[element.name] = element.value
@@ -103,9 +80,7 @@ const command: SlashCommand = {
 					text: 'Test embed message',
 					iconURL: interaction.client.user?.avatarURL() || undefined,
 				})
-			const selectedTextChannel = interaction.channel?.client.channels.cache.get(
-				options.channel.toString(),
-			) as TextChannel
+			const selectedTextChannel = interaction.channel?.client.channels.cache.get(options.channel.toString()) as TextChannel
 			selectedTextChannel.send({ embeds: [embed] })
 			return interaction.editReply({
 				content: 'Embed message successfully sent.',

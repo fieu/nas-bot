@@ -1,15 +1,7 @@
-import {
-	SlashCommandBuilder,
-	CommandInteraction,
-	Collection,
-	PermissionResolvable,
-	Message,
-	AutocompleteInteraction,
-} from 'discord.js'
-import mongoose from 'mongoose'
+import { SlashCommandBuilder, CommandInteraction, Collection, PermissionResolvable, Message, AutocompleteInteraction } from 'discord.js'
 
 export interface SlashCommand {
-	command: SlashCommandBuilder | any
+	command: SlashCommandBuilder<Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">>
 	execute: (interaction: CommandInteraction) => void
 	autocomplete?: (interaction: AutocompleteInteraction) => void
 	cooldown?: number // in seconds
