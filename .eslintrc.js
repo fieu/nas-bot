@@ -3,6 +3,7 @@ module.exports = {
 		es2021: true,
 		node: true,
 	},
+	ignorePatterns: ['build/**'],
 	extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
 	overrides: [],
 	parser: '@typescript-eslint/parser',

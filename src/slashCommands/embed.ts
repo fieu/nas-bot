@@ -69,7 +69,7 @@ const command: SlashCommand = {
 				{ name: 'LightGrey', value: 'LightGrey' },
 				{ name: 'DarkNavy', value: 'DarkNavy' },
 			]
-			let filtered: { name: string; value: string }[] = []
+			const filtered: { name: string; value: string }[] = []
 			for (let i = 0; i < choices.length; i++) {
 				const choice = choices[i]
 				if (choice.name.includes(focusedValue)) filtered.push(choice)
@@ -103,7 +103,7 @@ const command: SlashCommand = {
 					text: 'Test embed message',
 					iconURL: interaction.client.user?.avatarURL() || undefined,
 				})
-			let selectedTextChannel = interaction.channel?.client.channels.cache.get(
+			const selectedTextChannel = interaction.channel?.client.channels.cache.get(
 				options.channel.toString(),
 			) as TextChannel
 			selectedTextChannel.send({ embeds: [embed] })

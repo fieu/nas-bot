@@ -27,7 +27,7 @@ export const checkPermissions = (
 	member: GuildMember,
 	permissions: Array<PermissionResolvable>,
 ) => {
-	let neededPermissions: PermissionResolvable[] = []
+	const neededPermissions: PermissionResolvable[] = []
 	permissions.forEach((permission) => {
 		if (!member.permissions.has(permission)) neededPermissions.push(permission)
 	})
